@@ -1,39 +1,38 @@
-function addTask(description) {
-  // Optionnel : ajouter le 'trim' et la vérification de nom vide pour la robustesse
-  const trimmedDescription = String(description).trim();
-  if (trimmedDescription.length === 0) {
-    throw new Error("La description de la tâche ne peut pas être vide.");
-  }
-  
-  const task = { id: nextId++, description: trimmedDescription, done: false };
+
+// lib/tasks.js
+let tasks = []; // tableau local pour cette branche
+let nextId = 1;
+
+// Fonction pour tests : ajoute une tâche simulée
+function addTestTask(name, done = false) {
+  const task = { id: String(nextId++), name: name.trim(), done };
   tasks.push(task);
   return task;
 }
 
-/**
- * Bascule l'état 'done' d'une tâche existante.
- * @param {number} id - L'ID de la tâche à basculer.
- * @returns {object} La tâche modifiée.
- * @throws {Error} Si aucune tâche n'est trouvée avec cet ID.
- */
+// La fonction à implémenter
 function toggleTask(id) {
-  // 1. Trouver la tâche par son ID
-  const task = tasks.find(t => t.id === id);
-
-  // 2. Gérer le cas où l'ID n'existe pas
+  const task = tasks.find(t => t.id === String(id));
   if (!task) {
-    throw new Error(`Tâche avec l'ID ${id} non trouvée.`);
+    throw new Error('task not found');
   }
-
-  // 3. Basculer l'état (inverser la valeur booléenne)
   task.done = !task.done;
-
   return task;
 }
 
-module.exports = {
-  getTasks,
-  reset,
-  addTask,
-  toggleTask // NOUVEAU : Exporter la fonction
-};
+// Utile pour tester et réinitialiser le tableau
+function resetForTests() {
+
+let tasks = [];
+let nextId = 1;
+
+function getTasks() {
+  return tasks;
+}
+
+function reset() {
+
+  tasks = [];
+  nextId = 1;
+}
+}
