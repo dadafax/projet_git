@@ -35,3 +35,4 @@ function reset() {
   tasks = [];
   nextId = 1;
 }
+}
