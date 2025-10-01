@@ -1,3 +1,4 @@
+
 // lib/tasks.js
 let tasks = []; // tableau local pour cette branche
 let nextId = 1;
@@ -21,18 +22,16 @@ function toggleTask(id) {
 
 // Utile pour tester et réinitialiser le tableau
 function resetForTests() {
+
+let tasks = [];
+let nextId = 1;
+
+function getTasks() {
+  return tasks;
+}
+
+function reset() {
+
   tasks = [];
   nextId = 1;
 }
-
-// Pour tests uniquement : accéder au tableau
-function getTasks() {
-  return tasks.slice();
-}
-
-module.exports = {
-  toggleTask,
-  addTestTask,
-  resetForTests,
-  getTasks
-};

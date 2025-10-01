@@ -1,4 +1,6 @@
+
 const { toggleTask, addTestTask, getTasks, resetForTests } = require('../lib/tasks');
+
 
 beforeEach(() => resetForTests());
 
@@ -25,4 +27,10 @@ test('toggleTask laisse les autres tâches inchangées', () => {
   const all = getTasks();
   expect(all.find(t => t.id === t1.id).done).toBe(true);
   expect(all.find(t => t.id === t2.id).done).toBe(true);
+});
+
+test('adding a task stores it in the list', () => {
+  const task = addTask('Faire mes devoirs');
+  expect(task).toEqual({ id: 1, description: 'Faire mes devoirs', done: false });
+  expect(getTasks()).toEqual([{ id: 1, description: 'Faire mes devoirs', done: false }]);
 });
