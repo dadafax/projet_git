@@ -1,6 +1,5 @@
 name: CI
 
-# Quand lancer la CI : à chaque push ou PR vers main
 on:
   push:
     branches: [ main ]
@@ -22,6 +21,8 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: eval-git-ci-js-base
 
       - name: Run tests
         run: npm test
+        working-directory: eval-git-ci-js-base
