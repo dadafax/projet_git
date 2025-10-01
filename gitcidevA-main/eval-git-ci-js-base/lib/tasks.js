@@ -1,3 +1,28 @@
+
+// lib/tasks.js
+let tasks = []; // tableau local pour cette branche
+let nextId = 1;
+
+// Fonction pour tests : ajoute une tâche simulée
+function addTestTask(name, done = false) {
+  const task = { id: String(nextId++), name: name.trim(), done };
+  tasks.push(task);
+  return task;
+}
+
+// La fonction à implémenter
+function toggleTask(id) {
+  const task = tasks.find(t => t.id === String(id));
+  if (!task) {
+    throw new Error('task not found');
+  }
+  task.done = !task.done;
+  return task;
+}
+
+// Utile pour tester et réinitialiser le tableau
+function resetForTests() {
+
 let tasks = [];
 let nextId = 1;
 
@@ -6,14 +31,7 @@ function getTasks() {
 }
 
 function reset() {
+
   tasks = [];
   nextId = 1;
 }
-
-function addTask(description) {
-  const task = { id: nextId++, description, done: false };
-  tasks.push(task);
-  return task;
-}
-
-module.exports = { getTasks, reset, addTask };
